@@ -13,6 +13,8 @@ import {
   usersRegisterUrl,
   transactionsUrl,
 } from "../config/frontendUrl.config";
+import { employesHandleLogout } from "../handlers/employes.handler";
+import { usersHandleLogout } from "../handlers/users.handler";
 
 const Header = (props) => {
   return (
@@ -40,7 +42,10 @@ const Header = (props) => {
                       Transactions
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action/3.4">
+                    <NavDropdown.Item
+                      href={employesUrl}
+                      onClick={() => employesHandleLogout(props.setAuth)}
+                    >
                       Employee Logout
                     </NavDropdown.Item>
                   </NavDropdown>
@@ -76,7 +81,10 @@ const Header = (props) => {
                       My Transactions
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action/3.4">
+                    <NavDropdown.Item
+                      href="#action/3.4"
+                      onClick={() => usersHandleLogout(props.setAuth)}
+                    >
                       Users Logout
                     </NavDropdown.Item>
                   </NavDropdown>

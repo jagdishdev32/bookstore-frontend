@@ -2,9 +2,9 @@
 
 ## Tasks
 
-- [ ] Basic React App
+- [x] Basic React App
 
-- [ ] Header component with route links
+- [x] Header component with route links
 
 - [ ] Routes
 
