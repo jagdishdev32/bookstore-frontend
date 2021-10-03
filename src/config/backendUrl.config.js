@@ -1,7 +1,7 @@
 const data = {
   baseUrl: "http://localhost:5000",
   booksUrl: "/books",
-  booksSearchUrl: "/search/",
+  booksSearchUrl: "/search",
   employesUrl: "/employes",
   employesLoginUrl: "/login",
   employesRegisterUrl: "/register",

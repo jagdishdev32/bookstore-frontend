@@ -13,12 +13,12 @@
     - [ ] User Routes
 
       - [x] getBooks GET "/books",
-      - [ ] getBooksByName GET "/books/search/:name"
+      - [x] getBooksByName GET "/books/search/:name"
 
     - [ ] Employer Routes
 
       - [x] getBooks GET "/books"
-      - [ ] getBooksByName GET "/books/search/:name",
+      - [x] getBooksByName GET "/books/search/:name",
       - [ ] CreateBook POST "/books",
       - [ ] UpdateBook POST "/books:id",
       - [ ] deleteBook DELETE "/books:id",

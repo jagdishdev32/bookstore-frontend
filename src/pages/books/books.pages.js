@@ -3,11 +3,12 @@ import AllLinkButtons from "../../components/AllLinkButtons.components";
 import Card from "../../components/Card.components";
 import Loading from "../../components/Loading.components";
 
-import { getBooks } from "../../handlers/booksRequest.handlers";
+import { getBooks, getBooksByName } from "../../handlers/booksRequest.handlers";
 import { purchaseHandler } from "../../handlers/transactions.handlers";
 
 const Books = (props) => {
   const [books, setBooks] = useState([]);
+  const [search, setSearch] = useState("");
   // console.log(books);
 
   // TODO uncomment for final token
@@ -36,9 +37,41 @@ const Books = (props) => {
     );
   }
 
+  const handleSearchInput = (e) => {
+    if (e.target.value === "") {
+      getBooks(token)
+        .then((books) => {
+          setBooks(books);
+        })
+        .catch((error) => console.log(error));
+    } else {
+      getBooksByName(e.target.value, token)
+        .then((books) => {
+          console.log(books);
+          setBooks(books);
+        })
+        .catch((error) => console.log(error));
+    }
+
+    setSearch(e.target.value);
+    // alert(search);
+    // console.log(search);
+  };
+
   return (
     <>
-      <h1>Books page</h1>
+      <div className="books-head flex d-flex justify-content-between ">
+        <h1>Books page</h1>
+        <div className="search">
+          <input
+            type="search"
+            className="form-control inline mr-sm-2"
+            // className="d-inline-flex p-2 my-1"
+            placeholder="Search"
+            onChange={handleSearchInput}
+          />
+        </div>
+      </div>
       {/* Get Books */}
       {books ? (
         <>
