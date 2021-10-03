@@ -1,5 +1,10 @@
 import axios from "axios";
-import { baseUrl, usersUrl, usersLoginUrl } from "../config/backendUrl.config";
+import {
+  baseUrl,
+  usersUrl,
+  usersLoginUrl,
+  usersRegisterUrl,
+} from "../config/backendUrl.config";
 
 export const usersLogin = async (username, password) => {
   return await axios({
@@ -10,6 +15,35 @@ export const usersLogin = async (username, password) => {
       //   password: "secret",
       username,
       password,
+    },
+  })
+    .then((response) => {
+      // console.log(response.data);
+      return response.data;
+    })
+    .catch((error) => {
+      throw error;
+    });
+};
+
+export const UsersRegisterRequest = (
+  username,
+  password,
+  address,
+  age,
+  phone_no
+) => {
+  return axios({
+    method: "post",
+    url: baseUrl + usersUrl + usersRegisterUrl,
+    data: {
+      //   username: "testemployee",
+      //   password: "secret",
+      username,
+      password,
+      address,
+      age,
+      phone_no,
     },
   })
     .then((response) => {
@@ -60,5 +94,28 @@ export const usersHandleLoggedInSubmit = (
     })
     .catch((error) => alert(error.message));
 
+  return;
+};
+
+export const usersHandleRegisterSubmit = (
+  e,
+  username,
+  password,
+  age,
+  address,
+  phoneNo,
+  history,
+  setAuth
+) => {
+  e.preventDefault();
+
+  UsersRegisterRequest(username, password, address, age, phoneNo)
+    .then((data) => {
+      alert("User Created Succesfully");
+      usersHandleLoggedInSubmit(e, username, password, history, setAuth);
+    })
+    .catch((error) => alert(error.message));
+
+  // Loggin In After registration
   return;
 };

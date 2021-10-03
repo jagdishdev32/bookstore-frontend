@@ -36,6 +36,7 @@
 
 import { Switch, Route, Link } from "react-router-dom";
 import LinkButton from "../../components/LinkButton.components";
+import { transactionsUrl } from "../../config/backendUrl.config";
 import {
   booksUrl,
   usersLoginUrl,
@@ -60,11 +61,13 @@ const Users = (props) => {
           <UsersRegister auth={props.auth} setAuth={props.setAuth} />
         </Route>
       </Switch>
+      <br />
 
       {props.auth.usersLogin ? (
         <>
           {/* Users Logged In */}
           <LinkButton title="Books" to={booksUrl} />
+          <LinkButton title="Transactions" to={transactionsUrl} />
         </>
       ) : (
         <>

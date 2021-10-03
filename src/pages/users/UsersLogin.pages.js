@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { usersUrl } from "../../config/frontendUrl.config";
 import { usersHandleLoggedInSubmit } from "../../handlers/users.handler";
+import Button from "../../components/Button.components";
 
 const UsersLogin = (props) => {
   const [username, setUsername] = useState("");
@@ -36,7 +37,6 @@ const UsersLogin = (props) => {
 
   return (
     <>
-      <br />
       <h1>Users Login Page</h1>
 
       <form>
@@ -60,9 +60,7 @@ const UsersLogin = (props) => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button
-          type="submit"
-          className="btn btn-primary"
+        <Button
           onClick={(e) =>
             usersHandleLoggedInSubmit(
               e,
@@ -72,11 +70,9 @@ const UsersLogin = (props) => {
               props.setAuth
             )
           }
-        >
-          Submit
-        </button>
+          title="Submit"
+        />
       </form>
-      <br />
     </>
   );
 };

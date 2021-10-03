@@ -1,7 +1,13 @@
 const Loading = (props) => {
   return (
-    <div className="spinner-border" role="status">
-      <span className="visually-hidden">Loading...</span>
+    <div class="d-flex justify-content-center">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+
+      <br />
+      <br />
+      <br />
     </div>
   );
 };

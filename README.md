@@ -12,12 +12,12 @@
 
     - [ ] User Routes
 
-      - [ ] getBooks GET "/books",
+      - [x] getBooks GET "/books",
       - [ ] getBooksByName GET "/books/search/:name"
 
     - [ ] Employer Routes
 
-      - [ ] getBooks GET "/books"
+      - [x] getBooks GET "/books"
       - [ ] getBooksByName GET "/books/search/:name",
       - [ ] CreateBook POST "/books",
       - [ ] UpdateBook POST "/books:id",
@@ -25,24 +25,24 @@
 
   - [ ] Employee
 
+    - [x] EmployeeLogin POST "/employes/login",
     - [ ] GetAllEmployee(Optional) GET "/employes",
     - [ ] RegisterEmployee(Optional) POST "/employes/register",
-    - [ ] EmployeeLogin POST "/employes/login",
 
   - [ ] User Login
 
-    - [ ] GetAllUsers(Optional) GET "/users/",
     - [ ] RegisterUser POST "/users/register",
-    - [ ] LoginUser POST "/users/login"
+    - [x] LoginUser POST "/users/login"
+    - [ ] GetAllUsers(Optional) GET "/users/",
 
   - [ ] Book Transaction
 
     - [ ] User Routes
 
       - [ ] purchaseBook POST "/transactions/purchase"
-      - [ ] getAllTransactionByUser GET "/transactions/purchase"
+      - [x] getAllTransactionByUser GET "/transactions/purchase"
 
     - [ ] Employer Routes
 
-      - [ ] get all transactions GET "/transactions",
+      - [x] get all transactions GET "/transactions",
       - [ ] getAllTransactionByUser GET "/transactions/purchase" (body containing userid)
