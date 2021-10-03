@@ -48,6 +48,7 @@ export const UsersRegisterRequest = (
   })
     .then((response) => {
       // console.log(response.data);
+      // alert(response.data);
       return response.data;
     })
     .catch((error) => {
@@ -111,7 +112,6 @@ export const usersHandleRegisterSubmit = (
 
   UsersRegisterRequest(username, password, address, age, phoneNo)
     .then((data) => {
-      alert("User Created Succesfully");
       usersHandleLoggedInSubmit(e, username, password, history, setAuth);
     })
     .catch((error) => alert(error.message));

@@ -9,6 +9,8 @@ import {
 import EmployesLogin from "./EmployesLogin.pages";
 import EmployesRegister from "./EmployesRegister.pages";
 
+import { employesRegistrationEnabled } from "../../config/other.config";
+
 const Employes = (props) => {
   return (
     <>
@@ -34,10 +36,17 @@ const Employes = (props) => {
         <>
           {/* Employes Not Logged In */}
           <LinkButton title="Login" to={`${employesUrl + employesLoginUrl}`} />
-          <LinkButton
-            title="Register"
-            to={`${employesUrl + employesRegisterUrl}`}
-          />
+          {employesRegistrationEnabled ? (
+            <>
+              {/* Registration Enabled */}
+              <LinkButton
+                title="Register"
+                to={`${employesUrl + employesRegisterUrl}`}
+              />
+            </>
+          ) : (
+            <>{/* Registration Not Enabled */}</>
+          )}
         </>
       )}
     </>

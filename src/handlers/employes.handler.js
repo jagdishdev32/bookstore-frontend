@@ -3,6 +3,7 @@ import {
   baseUrl,
   employesUrl,
   employesLoginUrl,
+  employesRegisterUrl,
 } from "../config/backendUrl.config";
 
 export const employesLogin = async (username, password) => {
@@ -17,6 +18,26 @@ export const employesLogin = async (username, password) => {
     },
   })
     .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      throw error;
+    });
+};
+
+export const employesRegisterRequest = (username, password) => {
+  return axios({
+    method: "post",
+    url: baseUrl + employesUrl + employesRegisterUrl,
+    data: {
+      //   username: "testemployee",
+      //   password: "secret",
+      username,
+      password,
+    },
+  })
+    .then((response) => {
+      // console.log(response.data);
       return response.data;
     })
     .catch((error) => {
@@ -63,5 +84,25 @@ export const employesHandleLoggedInSubmit = (
     })
     .catch((error) => alert(error.message));
 
+  return;
+};
+
+export const employesHandleRegisterSubmit = (
+  e,
+  username,
+  password,
+  history,
+  setAuth
+) => {
+  e.preventDefault();
+
+  employesRegisterRequest(username, password)
+    .then((data) => {
+      alert("Employe Created Succesfully");
+      employesHandleLoggedInSubmit(e, username, password, history, setAuth);
+    })
+    .catch((error) => alert(error.message));
+
+  // Loggin In After registration
   return;
 };

@@ -26,12 +26,12 @@
   - [ ] Employee
 
     - [x] EmployeeLogin POST "/employes/login",
+    - [x] RegisterEmployee(Optional) POST "/employes/register",
     - [ ] GetAllEmployee(Optional) GET "/employes",
-    - [ ] RegisterEmployee(Optional) POST "/employes/register",
 
   - [ ] User Login
 
-    - [ ] RegisterUser POST "/users/register",
+    - [x] RegisterUser POST "/users/register",
     - [x] LoginUser POST "/users/login"
     - [ ] GetAllUsers(Optional) GET "/users/",
 

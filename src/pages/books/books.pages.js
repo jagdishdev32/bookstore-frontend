@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import AllLinkButtons from "../../components/AllLinkButtons.components";
 import Card from "../../components/Card.components";
 import Loading from "../../components/Loading.components";
 
@@ -24,12 +25,24 @@ const Books = (props) => {
       .catch((error) => console.log(error));
   }, []);
 
+  if (!props.auth.employesLogin && !props.auth.usersLogin) {
+    return (
+      <>
+        <h1>Books Page</h1>
+        <p>You are Not LoggedIn</p>
+        {/* <p>Employer is Not LoggedIn</p> */}
+        <AllLinkButtons />
+      </>
+    );
+  }
+
   return (
     <>
       <h1>Books page</h1>
-      <div className="row justify-content-md-center">
-        {books ? (
-          <>
+      {/* Get Books */}
+      {books ? (
+        <>
+          <div className="row justify-content-md-center">
             {books.map((book) => {
               return (
                 <Card headKey={book.id} header={"book id: " + book.id}>
@@ -40,6 +53,7 @@ const Books = (props) => {
 
                   {props.auth.usersLogin ? (
                     <>
+                      {/* If User Logged In */}
                       <button
                         className="btn btn-primary"
                         onClick={() =>
@@ -50,22 +64,27 @@ const Books = (props) => {
                       </button>
                     </>
                   ) : (
-                    <p className="text-danger">
-                      Employes Cannot Purchase Book
-                      <br />
-                      Loggin as User to Purchase Book
-                    </p>
+                    <>
+                      {/* If Employes Logged In */}
+                      <p className="text-danger">
+                        Employes Cannot Purchase Book
+                        <br />
+                        Loggin as User to Purchase Book
+                      </p>
+                    </>
                   )}
                 </Card>
               );
             })}
-          </>
-        ) : (
-          <>
-            <Loading />
-          </>
-        )}
-      </div>
+          </div>
+        </>
+      ) : (
+        <>
+          {/* No Books */}
+          No books
+          {/* <Loading /> */}
+        </>
+      )}
     </>
   );
 };

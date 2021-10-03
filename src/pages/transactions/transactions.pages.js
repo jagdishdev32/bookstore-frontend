@@ -81,26 +81,40 @@ const Transactions = (props) => {
           <h1>My Transactions</h1>
           {transactions ? (
             <>
-              <div className="row justify-content-md-center">
-                {transactions.map((transaction) => {
-                  return (
-                    <Card
-                      headKey={transaction.transaction_id}
-                      header={"transaction Id: " + transaction.transaction_id}
-                    >
-                      <p>book name: {transaction.name}</p>
-                      <p>book author: {transaction.author}</p>
-                      {/* <p>book id: {transaction.book_id}</p>
+              {transactions.length < 1 ? (
+                <>
+                  {/* If No Transactions */}
+                  <p>You have No Transactions</p>
+                </>
+              ) : (
+                <>
+                  {/* If Transactions */}
+                  <div className="row justify-content-md-center">
+                    {transactions.map((transaction) => {
+                      return (
+                        <Card
+                          headKey={transaction.transaction_id}
+                          header={
+                            "transaction Id: " + transaction.transaction_id
+                          }
+                        >
+                          <p>book name: {transaction.name}</p>
+                          <p>book author: {transaction.author}</p>
+                          {/* <p>book id: {transaction.book_id}</p>
                       <p>book id: {transaction.book_id}</p>
                       <p>book id: {transaction.book_id}</p>
                       <p>user_id: {transaction.user_id}</p> */}
-                      <p>quantity: {transaction.quantity}</p>
-                      <p>book Final price : ${transaction.price}</p>
-                      <p>transaction_date: {transaction.transaction_date}</p>
-                    </Card>
-                  );
-                })}
-              </div>
+                          <p>quantity: {transaction.quantity}</p>
+                          <p>book Final price : ${transaction.price}</p>
+                          <p>
+                            transaction_date: {transaction.transaction_date}
+                          </p>
+                        </Card>
+                      );
+                    })}
+                  </div>
+                </>
+              )}
             </>
           ) : (
             <>

@@ -7,9 +7,9 @@ const UsersRegister = (props) => {
   // const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [address, setAddress] = useState("");
-  const [age, setAge] = useState("");
-  const [phoneNo, setPhoneNo] = useState("");
+  const [address, setAddress] = useState(undefined);
+  const [age, setAge] = useState(undefined);
+  const [phoneNo, setPhoneNo] = useState(undefined);
   const [checked, setChecked] = useState(false);
   const history = useHistory();
 
@@ -39,7 +39,7 @@ const UsersRegister = (props) => {
 
   const checkChangeHandle = (e) => {
     if (username !== "" && password !== "") {
-      alert("filled");
+      // alert("filled");
       setChecked(true);
     } else {
       alert("Username & Password is required.");
