@@ -19,9 +19,9 @@
 
       - [x] getBooks GET "/books"
       - [x] getBooksByName GET "/books/search/:name",
-      - [ ] CreateBook POST "/books",
+      - [x] CreateBook POST "/books",
       - [ ] UpdateBook POST "/books:id",
-      - [ ] deleteBook DELETE "/books:id",
+      - [x] deleteBook DELETE "/books:id",
 
   - [ ] Employee
 

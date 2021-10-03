@@ -1,16 +1,39 @@
 import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import AllLinkButtons from "../../components/AllLinkButtons.components";
 import Card from "../../components/Card.components";
 import HeadWithSearch from "../../components/HeadWithSearch.components";
+import Button from "../../components/Button.components";
 import Loading from "../../components/Loading.components";
 
-import { getBooks, getBooksByName } from "../../handlers/booksRequest.handlers";
+import MyVerticallyCenteredModal from "../../components/MyVerticallyCenteredModal.components";
+
+import {
+  getBooks,
+  getBooksByName,
+  updateBookHandler,
+  createBookHandler,
+  deleteBookHandler,
+} from "../../handlers/booksRequest.handlers";
 import { purchaseHandler } from "../../handlers/transactions.handlers";
+import MyModal from "../../components/MyModal.components";
+import UpdateBookComponent from "../../components/UpdateBookComponent.components";
+import LinkButton from "../../components/LinkButton.components";
+import {
+  booksUpdateUrl,
+  booksUrl,
+  createBookUrl,
+} from "../../config/frontendUrl.config";
 
 const Books = (props) => {
   const [books, setBooks] = useState([]);
   const [search, setSearch] = useState("");
-  // console.log(books);
+  const history = useHistory();
+
+  // Modal
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   let token = props.auth.usersLogin
     ? props.auth.usersToken
@@ -60,19 +83,25 @@ const Books = (props) => {
 
   return (
     <>
-      <HeadWithSearch title="Books page" onChange={handleSearchInput} />
-      {/* <div className="books-head flex d-flex justify-content-between ">
-        <h1>Books page</h1>
-        <div className="search">
-          <input
-            type="search"
-            className="form-control inline mr-sm-2"
-            // className="d-inline-flex p-2 my-1"
-            placeholder="Search"
-            onChange={handleSearchInput}
-          />
-        </div>
-      </div> */}
+      <HeadWithSearch
+        title="Books page"
+        onChange={handleSearchInput}
+        placeholder="Search By Name"
+      >
+        {props.auth.employesLogin ? (
+          <>
+            {/* Header If Employes Logged In  */}
+            <LinkButton
+              title="Create Book"
+              className="bg-primary"
+              to={createBookUrl}
+            />
+          </>
+        ) : (
+          <>{/* Header If Employes Not Logged In  */}</>
+        )}
+      </HeadWithSearch>
+
       {/* Get Books */}
       {books ? (
         <>
@@ -115,6 +144,21 @@ const Books = (props) => {
                         <br />
                         Loggin as User to Purchase Book
                       </p>
+                      <Button
+                        title="Delete Book"
+                        type="button"
+                        onClick={() => {
+                          deleteBookHandler(book.id, token, history).then(
+                            () => {
+                              getBooks(token)
+                                .then((books) => {
+                                  setBooks(books);
+                                })
+                                .catch((error) => console.log(error));
+                            }
+                          );
+                        }}
+                      />
                     </>
                   )}
                 </Card>
@@ -124,10 +168,16 @@ const Books = (props) => {
         </>
       ) : (
         <>
-          {/* No Books */}
-          No books are available to purchase
-          {/* <Loading /> */}
+          <p> No books are available to purchase</p>
         </>
+      )}
+      {books.length < 1 ? (
+        <>
+          {/* No Books */}
+          <Loading />
+        </>
+      ) : (
+        ""
       )}
     </>
   );

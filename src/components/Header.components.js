@@ -12,6 +12,7 @@ import {
   usersLoginUrl,
   usersRegisterUrl,
   transactionsUrl,
+  createBookUrl,
 } from "../config/frontendUrl.config";
 import { employesHandleLogout } from "../handlers/employes.handler";
 import { usersHandleLogout } from "../handlers/users.handler";
@@ -38,6 +39,9 @@ const Header = (props) => {
                   {/* Employee Books Routes */}
                   <NavDropdown title="Employes Menu" id="basic-nav-dropdown">
                     <NavDropdown.Item href={booksUrl}>Books</NavDropdown.Item>
+                    <NavDropdown.Item href={createBookUrl}>
+                      Create Book
+                    </NavDropdown.Item>
                     <NavDropdown.Item href={transactionsUrl}>
                       Transactions
                     </NavDropdown.Item>

@@ -1,3 +1,5 @@
+import Button from "./Button.components";
+
 const HeadWithSearch = (props) => {
   return (
     <div className="books-head flex d-flex justify-content-between ">
@@ -11,6 +13,7 @@ const HeadWithSearch = (props) => {
           onChange={props.onChange}
         />
       </div>
+      {props.children}
     </div>
   );
 };

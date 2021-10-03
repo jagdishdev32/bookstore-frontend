@@ -8,7 +8,7 @@ import About from "./pages/About.pages";
 import NotFound from "./pages/NotFound.pages";
 import Users from "./pages/users/Users.pages";
 import Employes from "./pages/employes/Employes.pages";
-import Books from "./pages/books/books.pages";
+import Books from "./pages/books/Books.pages";
 import Transactions from "./pages/transactions/transactions.pages";
 
 import {
@@ -18,9 +18,12 @@ import {
   employesUrl,
   usersUrl,
   transactionsUrl,
+  booksUpdateUrl,
+  createBookUrl,
 } from "./config/frontendUrl.config";
 
 import loginData from "./data/loginData.data";
+import CreateBook from "./pages/books/CreateBook.pages";
 
 function App() {
   const [auth, setAuth] = useState(loginData);
@@ -68,6 +71,9 @@ function App() {
             </Route>
             <Route path={booksUrl}>
               <Books auth={auth} setAuth={setAuth} />
+            </Route>
+            <Route path={createBookUrl}>
+              <CreateBook auth={auth} setAuth={setAuth} />
             </Route>
             <Route path={transactionsUrl}>
               <Transactions auth={auth} setAuth={setAuth} />

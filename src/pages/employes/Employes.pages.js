@@ -2,9 +2,11 @@ import { Switch, Route, Link } from "react-router-dom";
 import LinkButton from "../../components/LinkButton.components";
 import {
   booksUrl,
+  createBookUrl,
   employesLoginUrl,
   employesRegisterUrl,
   employesUrl,
+  transactionsUrl,
 } from "../../config/frontendUrl.config";
 import EmployesLogin from "./EmployesLogin.pages";
 import EmployesRegister from "./EmployesRegister.pages";
@@ -31,6 +33,8 @@ const Employes = (props) => {
         <>
           {/* Employes Logged In */}
           <LinkButton title="Books" to={booksUrl} />
+          <LinkButton title="Create Book" to={createBookUrl} />
+          <LinkButton title="All Transactions" to={transactionsUrl} />
         </>
       ) : (
         <>
