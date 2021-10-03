@@ -27,3 +27,23 @@ export const getTransactions = async (token, login = "employes") => {
       throw error;
     });
 };
+
+export const getTransactionsBySearch = async (token, user_id) => {
+  let url = baseUrl + transactionsUrl + "/purchase";
+  return await axios({
+    method: "get",
+    url: url,
+    headers: {
+      Authorization: token,
+    },
+    data: {
+      user_id: user_id,
+    },
+  })
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      throw error;
+    });
+};

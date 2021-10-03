@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
 import AllLinkButtons from "../../components/AllLinkButtons.components";
 import Card from "../../components/Card.components";
+import HeadWithSearch from "../../components/HeadWithSearch.components";
 import Loading from "../../components/Loading.components";
 
-import { getTransactions } from "../../handlers/transactions.handlers";
+import {
+  getTransactions,
+  getTransactionsBySearch,
+} from "../../handlers/transactions.handlers";
 
 const Transactions = (props) => {
   const [transactions, setTransactions] = useState(false);
+  const [search, setSearch] = useState("");
 
   // let token = props.auth.employesToken;
   let token = props.auth.employesLogin
@@ -14,7 +19,7 @@ const Transactions = (props) => {
     : props.auth.usersLogin
     ? props.auth.usersToken
     : "";
-  console.log(transactions);
+  // console.log(transactions);
 
   useEffect(() => {
     if (token === props.auth.usersToken) {
@@ -45,12 +50,52 @@ const Transactions = (props) => {
     );
   }
 
+  const handleSearchInput = (e) => {
+    if (e.target.value === "") {
+      getTransactions(token)
+        .then((transactions) => {
+          setTransactions(transactions);
+        })
+        .catch((error) => console.log(error));
+    } else {
+      // alert("hello");
+      // alert(e.target.value);
+      setSearch(e.target.value);
+
+      //TODO fix transaction issue
+      // getTransactionsBySearch(token, e.target.value)
+      //   .then((response) => {
+      //     console.log(response);
+      //   })
+      //   .catch((error) => console.log(error.message));
+      // // console.log(e.target.value);
+
+      setTransactions((prevTransactions) => {
+        return prevTransactions.filter(
+          (transaction) => transaction.user_id == e.target.value
+        );
+      });
+      // transactions
+      //   .filter((transaction) => {
+      //     return transaction.user_id == e.target.value;
+      //   })
+      //   .map((trans) => {
+      //     console.log(trans);
+      //   });
+    }
+  };
+
   return (
     <>
       {props.auth.employesLogin ? (
         <>
           {/* If Employes LoggedIn */}
-          <h1>Transactions Page</h1>
+          {/* <h1>Transactions Page</h1> */}
+          <HeadWithSearch
+            title="Transactions Page"
+            onChange={handleSearchInput}
+            placeholder="Search by User Id"
+          />
           <div className="row justify-content-md-center">
             {transactions ? (
               <>

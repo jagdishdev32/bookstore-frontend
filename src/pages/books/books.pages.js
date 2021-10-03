@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import AllLinkButtons from "../../components/AllLinkButtons.components";
 import Card from "../../components/Card.components";
+import HeadWithSearch from "../../components/HeadWithSearch.components";
 import Loading from "../../components/Loading.components";
 
 import { getBooks, getBooksByName } from "../../handlers/booksRequest.handlers";
@@ -60,7 +61,8 @@ const Books = (props) => {
 
   return (
     <>
-      <div className="books-head flex d-flex justify-content-between ">
+      <HeadWithSearch title="Books page" onChange={handleSearchInput} />
+      {/* <div className="books-head flex d-flex justify-content-between ">
         <h1>Books page</h1>
         <div className="search">
           <input
@@ -71,7 +73,7 @@ const Books = (props) => {
             onChange={handleSearchInput}
           />
         </div>
-      </div>
+      </div> */}
       {/* Get Books */}
       {books ? (
         <>
