@@ -11,7 +11,7 @@ import {
 
 const Transactions = (props) => {
   const [transactions, setTransactions] = useState(false);
-  const [search, setSearch] = useState("");
+  const [initialTransactions, setInitialTransactions] = useState([]);
 
   // let token = props.auth.employesToken;
   let token = props.auth.employesLogin
@@ -27,6 +27,7 @@ const Transactions = (props) => {
       getTransactions(token, "users")
         .then((transactions) => {
           setTransactions(transactions);
+          setInitialTransactions(transactions);
         })
         .catch((error) => console.log(error));
     } else if (token === props.auth.employesToken) {
@@ -34,6 +35,7 @@ const Transactions = (props) => {
       getTransactions(token)
         .then((transactions) => {
           setTransactions(transactions);
+          setInitialTransactions(transactions);
         })
         .catch((error) => console.log(error));
     }
@@ -52,26 +54,27 @@ const Transactions = (props) => {
 
   const handleSearchInput = (e) => {
     if (e.target.value === "") {
-      getTransactions(token)
-        .then((transactions) => {
-          setTransactions(transactions);
-        })
-        .catch((error) => console.log(error));
+      setTransactions(initialTransactions);
+      // getTransactions(token)
+      //   .then((transactions) => {
+      //     setTransactions(transactions);
+      //     setInitialTransactions(transactions)
+      //   })
+      //   .catch((error) => console.log(error));
     } else {
-      // alert("hello");
-      // alert(e.target.value);
-      setSearch(e.target.value);
+      // setSearch(e.target.value);
 
-      //TODO fix transaction issue
+      // //TODO fix transaction issue
       // getTransactionsBySearch(token, e.target.value)
       //   .then((response) => {
+      //     alert(response);
       //     console.log(response);
       //   })
-      //   .catch((error) => console.log(error.message));
-      // // console.log(e.target.value);
+      //   .catch((error) => console.log(error));
+      // console.log(e.target.value);
 
       setTransactions((prevTransactions) => {
-        return prevTransactions.filter(
+        return initialTransactions.filter(
           (transaction) => transaction.user_id == e.target.value
         );
       });

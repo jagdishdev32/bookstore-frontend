@@ -12,7 +12,6 @@ const Books = (props) => {
   const [search, setSearch] = useState("");
   // console.log(books);
 
-  // TODO uncomment for final token
   let token = props.auth.usersLogin
     ? props.auth.usersToken
     : props.auth.employesLogin
@@ -83,8 +82,10 @@ const Books = (props) => {
                 <Card headKey={book.id} header={"book id: " + book.id}>
                   <p>book name: {book.name}</p>
                   <p>book author: {book.author}</p>
-                  <p>book quantity: {book.quantity}</p>
-                  <p>book price: {book.price}</p>
+                  <p>book price: ${book.price}</p>
+                  <p>book solds: {book.sales}</p>
+                  <p>book left: {book.quantity - +book.sales}</p>
+                  <p>book total quantity: {book.quantity}</p>
 
                   {props.auth.usersLogin ? (
                     <>
@@ -93,6 +94,14 @@ const Books = (props) => {
                         className="btn btn-primary"
                         onClick={() =>
                           purchaseHandler(book.id, props.auth.usersToken)
+                            .then((response) => {
+                              getBooks(token)
+                                .then((books) => {
+                                  setBooks(books);
+                                })
+                                .catch((error) => console.log(error));
+                            })
+                            .catch((error) => console.log(error))
                         }
                       >
                         Purchase
@@ -116,7 +125,7 @@ const Books = (props) => {
       ) : (
         <>
           {/* No Books */}
-          No books
+          No books are available to purchase
           {/* <Loading /> */}
         </>
       )}

@@ -10,7 +10,7 @@
 
   - [ ] Books Routes
 
-    - [ ] User Routes
+    - [x] User Routes
 
       - [x] getBooks GET "/books",
       - [x] getBooksByName GET "/books/search/:name"
@@ -35,14 +35,14 @@
     - [x] LoginUser POST "/users/login"
     - [ ] GetAllUsers(Optional) GET "/users/",
 
-  - [ ] Book Transaction
+  - [x] Book Transaction
 
-    - [ ] User Routes
+    - [x] User Routes
 
-      - [ ] purchaseBook POST "/transactions/purchase"
+      - [x] purchaseBook POST "/transactions/purchase"
       - [x] getAllTransactionByUser GET "/transactions/purchase"
 
-    - [ ] Employer Routes
+    - [x] Employer Routes
 
       - [x] get all transactions GET "/transactions",
-      - [ ] getAllTransactionByUser GET "/transactions/purchase" (body containing userid)
+      - [x] getAllTransactionByUser GET "/transactions/purchase" (body containing userid throw error with axios get request)

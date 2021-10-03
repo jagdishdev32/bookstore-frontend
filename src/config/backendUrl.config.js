@@ -6,6 +6,7 @@ const data = {
   employesLoginUrl: "/login",
   employesRegisterUrl: "/register",
   transactionsUrl: "/transactions",
+  purchasesUrl: "/purchase",
   usersUrl: "/users",
   usersLoginUrl: "/login",
   usersRegisterUrl: "/register",
