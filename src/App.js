@@ -18,7 +18,6 @@ import {
   employesUrl,
   usersUrl,
   transactionsUrl,
-  booksUpdateUrl,
   createBookUrl,
   updateBookUrl,
 } from "./config/frontendUrl.config";
