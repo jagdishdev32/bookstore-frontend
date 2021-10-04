@@ -86,7 +86,7 @@ const Header = (props) => {
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item
-                      href="#action/3.4"
+                      // href="#action/3.4"
                       onClick={() => usersHandleLogout(props.setAuth)}
                     >
                       Users Logout

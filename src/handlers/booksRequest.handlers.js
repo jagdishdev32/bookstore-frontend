@@ -35,10 +35,55 @@ export const getBooksByName = (name, token) => {
     });
 };
 
-export const updateBookHandler = (name, token) => {
-  // prompt("");
-  return alert("Update Button");
-  // return;
+export const updateBookRequest = (
+  bookId,
+  name,
+  author,
+  token,
+  quantity = 10,
+  price = 100
+) => {
+  return axios({
+    method: "post",
+    url: baseUrl + booksUrl + "/" + bookId,
+    headers: {
+      Authorization: token,
+    },
+    data: {
+      name,
+      quantity,
+      author,
+      price,
+    },
+  })
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      throw error;
+    });
+};
+
+export const updateBookHandler = (
+  bookId,
+  name,
+  author,
+  quantity,
+  price,
+  token,
+  history
+) => {
+  return updateBookRequest(bookId, name, author, token, quantity, price)
+    .then((response) => {
+      console.log(response);
+      alert("Book Updated");
+      return history.push(booksUrl);
+      // return alert(response);
+    })
+    .catch((error) => {
+      console.log(error);
+      alert(error.message);
+    });
 };
 
 export const deleteBookHandler = (bookId, token) => {

@@ -20,10 +20,12 @@ import {
   transactionsUrl,
   booksUpdateUrl,
   createBookUrl,
+  updateBookUrl,
 } from "./config/frontendUrl.config";
 
 import loginData from "./data/loginData.data";
 import CreateBook from "./pages/books/CreateBook.pages";
+import UpdateBook from "./pages/books/UpdateBook.pages";
 
 function App() {
   const [auth, setAuth] = useState(loginData);
@@ -74,6 +76,9 @@ function App() {
             </Route>
             <Route path={createBookUrl}>
               <CreateBook auth={auth} setAuth={setAuth} />
+            </Route>
+            <Route path={updateBookUrl}>
+              <UpdateBook auth={auth} setAuth={setAuth} />
             </Route>
             <Route path={transactionsUrl}>
               <Transactions auth={auth} setAuth={setAuth} />

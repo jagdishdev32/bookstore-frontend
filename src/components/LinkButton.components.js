@@ -8,6 +8,7 @@ const LinkButton = (props) => {
       // className={
       //   "btn btn-primary mx-2 px-4 " + (props.className ? props.className : "")
       // }
+      state={props.state}
     >
       {props.title}
     </Link>

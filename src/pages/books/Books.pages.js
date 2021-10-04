@@ -23,6 +23,7 @@ import {
   booksUpdateUrl,
   booksUrl,
   createBookUrl,
+  updateBookUrl,
 } from "../../config/frontendUrl.config";
 
 const Books = (props) => {
@@ -144,6 +145,12 @@ const Books = (props) => {
                         <br />
                         Loggin as User to Purchase Book
                       </p>
+                      <LinkButton
+                        title="Update"
+                        to={{ pathname: updateBookUrl, state: { book: book } }}
+                        // state={{ book: book }}
+                        // state={{ book: book }}
+                      />
                       <Button
                         title="Delete Book"
                         type="button"

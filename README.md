@@ -6,9 +6,9 @@
 
 - [x] Header component with route links
 
-- [ ] Routes
+- [x] Routes
 
-  - [ ] Books Routes
+  - [x] Books Routes
 
     - [x] User Routes
 
@@ -20,16 +20,16 @@
       - [x] getBooks GET "/books"
       - [x] getBooksByName GET "/books/search/:name",
       - [x] CreateBook POST "/books",
-      - [ ] UpdateBook POST "/books:id",
+      - [x] UpdateBook POST "/books:id",
       - [x] deleteBook DELETE "/books:id",
 
-  - [ ] Employee
+  - [x] Employee
 
     - [x] EmployeeLogin POST "/employes/login",
     - [x] RegisterEmployee(Optional) POST "/employes/register",
     - [ ] GetAllEmployee(Optional) GET "/employes",
 
-  - [ ] User Login
+  - [x] User Login
 
     - [x] RegisterUser POST "/users/register",
     - [x] LoginUser POST "/users/login"
