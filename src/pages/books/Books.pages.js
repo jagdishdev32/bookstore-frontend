@@ -6,35 +6,19 @@ import HeadWithSearch from "../../components/HeadWithSearch.components";
 import Button from "../../components/Button.components";
 import Loading from "../../components/Loading.components";
 
-import MyVerticallyCenteredModal from "../../components/MyVerticallyCenteredModal.components";
-
 import {
   getBooks,
   getBooksByName,
-  updateBookHandler,
-  createBookHandler,
   deleteBookHandler,
 } from "../../handlers/booksRequest.handlers";
 import { purchaseHandler } from "../../handlers/transactions.handlers";
-import MyModal from "../../components/MyModal.components";
-import UpdateBookComponent from "../../components/UpdateBookComponent.components";
 import LinkButton from "../../components/LinkButton.components";
-import {
-  booksUpdateUrl,
-  booksUrl,
-  createBookUrl,
-  updateBookUrl,
-} from "../../config/frontendUrl.config";
+import { createBookUrl, updateBookUrl } from "../../config/frontendUrl.config";
 
 const Books = (props) => {
   const [books, setBooks] = useState([]);
-  const [search, setSearch] = useState("");
+  // const [search, setSearch] = useState("");
   const history = useHistory();
-
-  // Modal
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   let token = props.auth.usersLogin
     ? props.auth.usersToken
@@ -77,9 +61,7 @@ const Books = (props) => {
         .catch((error) => console.log(error));
     }
 
-    setSearch(e.target.value);
-    // alert(search);
-    // console.log(search);
+    // setSearch(e.target.value);
   };
 
   return (
@@ -148,8 +130,6 @@ const Books = (props) => {
                       <LinkButton
                         title="Update"
                         to={{ pathname: updateBookUrl, state: { book: book } }}
-                        // state={{ book: book }}
-                        // state={{ book: book }}
                       />
                       <Button
                         title="Delete Book"

@@ -2,10 +2,7 @@ import { useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import Button from "../../components/Button.components";
 import { employesLoginUrl, employesUrl } from "../../config/frontendUrl.config";
-import {
-  createBookHandler,
-  updateBookHandler,
-} from "../../handlers/booksRequest.handlers";
+import { updateBookHandler } from "../../handlers/booksRequest.handlers";
 
 const UpdateBook = (props) => {
   const history = useHistory();
@@ -56,7 +53,6 @@ const UpdateBook = (props) => {
   };
 
   const checkChangeHandle = (e) => {
-    // if (username !== "" && password !== "") {
     if (name !== "" && quantity !== "" && author !== "" && price !== "") {
       // alert("filled");
       setChecked(true);

@@ -4,10 +4,7 @@ import Card from "../../components/Card.components";
 import HeadWithSearch from "../../components/HeadWithSearch.components";
 import Loading from "../../components/Loading.components";
 
-import {
-  getTransactions,
-  getTransactionsBySearch,
-} from "../../handlers/transactions.handlers";
+import { getTransactions } from "../../handlers/transactions.handlers";
 
 const Transactions = (props) => {
   const [transactions, setTransactions] = useState(false);
@@ -19,7 +16,6 @@ const Transactions = (props) => {
     : props.auth.usersLogin
     ? props.auth.usersToken
     : "";
-  // console.log(transactions);
 
   useEffect(() => {
     if (token === props.auth.usersToken) {
@@ -46,7 +42,6 @@ const Transactions = (props) => {
       <>
         <h1>Transactions Page</h1>
         <p>You are Not LoggedIn</p>
-        {/* <p>Employer is Not LoggedIn</p> */}
         <AllLinkButtons />
       </>
     );
@@ -55,36 +50,12 @@ const Transactions = (props) => {
   const handleSearchInput = (e) => {
     if (e.target.value === "") {
       setTransactions(initialTransactions);
-      // getTransactions(token)
-      //   .then((transactions) => {
-      //     setTransactions(transactions);
-      //     setInitialTransactions(transactions)
-      //   })
-      //   .catch((error) => console.log(error));
     } else {
-      // setSearch(e.target.value);
-
-      // //TODO fix transaction issue
-      // getTransactionsBySearch(token, e.target.value)
-      //   .then((response) => {
-      //     alert(response);
-      //     console.log(response);
-      //   })
-      //   .catch((error) => console.log(error));
-      // console.log(e.target.value);
-
       setTransactions((prevTransactions) => {
         return initialTransactions.filter(
-          (transaction) => transaction.user_id == e.target.value
+          (transaction) => +transaction.user_id === +e.target.value
         );
       });
-      // transactions
-      //   .filter((transaction) => {
-      //     return transaction.user_id == e.target.value;
-      //   })
-      //   .map((trans) => {
-      //     console.log(trans);
-      //   });
     }
   };
 
@@ -148,10 +119,6 @@ const Transactions = (props) => {
                         >
                           <p>book name: {transaction.name}</p>
                           <p>book author: {transaction.author}</p>
-                          {/* <p>book id: {transaction.book_id}</p>
-                      <p>book id: {transaction.book_id}</p>
-                      <p>book id: {transaction.book_id}</p>
-                      <p>user_id: {transaction.user_id}</p> */}
                           <p>quantity: {transaction.quantity}</p>
                           <p>book Final price : ${transaction.price}</p>
                           <p>
