@@ -35,7 +35,6 @@ function App() {
         <Header auth={auth} setAuth={setAuth} />
         <div className="container">
           <Switch>
-            <Route path={homeUrl} component={Home} exact />
             <Route path={homeUrl} exact>
               <Home auth={auth} />
             </Route>

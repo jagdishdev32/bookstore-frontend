@@ -27,6 +27,15 @@ const Header = (props) => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href={homeUrl}>Home</Nav.Link>
+              {props.auth.employesLogin || props.auth.usersLogin ? (
+                <>
+                  {/* If Any LoggedIn */}
+                  <Nav.Link href={booksUrl}>Books</Nav.Link>
+                  <Nav.Link href={transactionsUrl}>Transactions</Nav.Link>
+                </>
+              ) : (
+                <>{/* If Noone LoggedIn */}</>
+              )}
               <Nav.Link href={aboutUrl}>About</Nav.Link>
             </Nav>
 
