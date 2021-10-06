@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import AllLinkButtons from "../../components/AllLinkButtons.components";
 import Card from "../../components/Card.components";

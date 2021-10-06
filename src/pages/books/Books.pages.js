@@ -32,7 +32,9 @@ const Books = (props) => {
         setBooks(books);
       })
       .catch((error) => console.log(error));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  // eslint-disable-next-line
 
   if (!props.auth.employesLogin && !props.auth.usersLogin) {
     return (
