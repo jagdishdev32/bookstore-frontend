@@ -31,7 +31,7 @@ function App() {
 
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Header auth={auth} setAuth={setAuth} />
         <div className="container">
           <Switch>
