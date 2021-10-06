@@ -14,29 +14,48 @@ import {
   transactionsUrl,
   createBookUrl,
 } from "../config/frontendUrl.config";
+import { basename, hashEnabled } from "../config/other.config";
 import { employesHandleLogout } from "../handlers/employes.handler";
 import { usersHandleLogout } from "../handlers/users.handler";
 
 const Header = (props) => {
+  let hashUrl = "";
+  let homeUrlFinal = homeUrl,
+    aboutUrlFinal = aboutUrl,
+    employesUrlFinal = employesUrl,
+    usersUrlFinal = usersUrl,
+    transactionsUrlFinal = transactionsUrl,
+    booksUrlFinal = booksUrl;
+
+  if (hashEnabled) {
+    hashUrl = "#";
+    homeUrlFinal = basename + hashUrl + homeUrl;
+    aboutUrlFinal = basename + hashUrl + aboutUrl;
+    employesUrlFinal = basename + hashUrl + employesUrl;
+    usersUrlFinal = basename + hashUrl + usersUrl;
+    transactionsUrlFinal = basename + hashUrl + transactionsUrl;
+    booksUrlFinal = basename + hashUrl + booksUrl;
+  }
+
   return (
     <>
       <Navbar bg="primary" expand="lg" variant="dark" className="mb-4">
         <Container>
-          <Navbar.Brand href={homeUrl}>Bookstore</Navbar.Brand>
+          <Navbar.Brand href={homeUrlFinal}>Bookstore</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href={homeUrl}>Home</Nav.Link>
+              <Nav.Link href={homeUrlFinal}>Home</Nav.Link>
               {props.auth.employesLogin || props.auth.usersLogin ? (
                 <>
                   {/* If Any LoggedIn */}
-                  <Nav.Link href={booksUrl}>Books</Nav.Link>
-                  <Nav.Link href={transactionsUrl}>Transactions</Nav.Link>
+                  <Nav.Link href={booksUrlFinal}>Books</Nav.Link>
+                  <Nav.Link href={transactionsUrlFinal}>Transactions</Nav.Link>
                 </>
               ) : (
                 <>{/* If Noone LoggedIn */}</>
               )}
-              <Nav.Link href={aboutUrl}>About</Nav.Link>
+              <Nav.Link href={aboutUrlFinal}>About</Nav.Link>
             </Nav>
 
             {/* Login Checks */}
@@ -47,16 +66,18 @@ const Header = (props) => {
                   {/* <h1>true</h1> */}
                   {/* Employee Books Routes */}
                   <NavDropdown title="Employes Menu" id="basic-nav-dropdown">
-                    <NavDropdown.Item href={booksUrl}>Books</NavDropdown.Item>
+                    <NavDropdown.Item href={booksUrlFinal}>
+                      Books
+                    </NavDropdown.Item>
                     <NavDropdown.Item href={createBookUrl}>
                       Create Book
                     </NavDropdown.Item>
-                    <NavDropdown.Item href={transactionsUrl}>
+                    <NavDropdown.Item href={transactionsUrlFinal}>
                       Transactions
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item
-                      href={employesUrl}
+                      href={employesUrlFinal}
                       onClick={() => employesHandleLogout(props.setAuth)}
                     >
                       Employee Logout
@@ -69,14 +90,20 @@ const Header = (props) => {
                   {/* <h1>false</h1> */}
                   {/* Employee Routes */}
                   <NavDropdown title="Employes Menu" id="basic-nav-dropdown">
-                    <NavDropdown.Item href={employesUrl + employesLoginUrl}>
+                    <NavDropdown.Item
+                      href={employesUrlFinal + employesLoginUrl}
+                    >
                       Employee Login
                     </NavDropdown.Item>
-                    <NavDropdown.Item href={employesUrl + employesRegisterUrl}>
+                    <NavDropdown.Item
+                      href={employesUrlFinal + employesRegisterUrl}
+                    >
                       Employee Register
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href={employesUrl + employesLoginUrl}>
+                    <NavDropdown.Item
+                      href={employesUrlFinal + employesLoginUrl}
+                    >
                       Books
                     </NavDropdown.Item>
                   </NavDropdown>
@@ -89,8 +116,10 @@ const Header = (props) => {
                   {/* <h1>true</h1> */}
                   {/* Users Books Routes */}
                   <NavDropdown title="Users Menu" id="basic-nav-dropdown">
-                    <NavDropdown.Item href={booksUrl}>Books</NavDropdown.Item>
-                    <NavDropdown.Item href={transactionsUrl}>
+                    <NavDropdown.Item href={booksUrlFinal}>
+                      Books
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href={transactionsUrlFinal}>
                       My Transactions
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
@@ -108,14 +137,14 @@ const Header = (props) => {
                   {/* <h1>false</h1> */}
                   {/* Users Routes */}
                   <NavDropdown title="Users Menu" id="basic-nav-dropdown">
-                    <NavDropdown.Item href={usersUrl + usersLoginUrl}>
+                    <NavDropdown.Item href={usersUrlFinal + usersLoginUrl}>
                       User Login
                     </NavDropdown.Item>
-                    <NavDropdown.Item href={usersUrl + usersRegisterUrl}>
+                    <NavDropdown.Item href={usersUrlFinal + usersRegisterUrl}>
                       User Register
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href={usersUrl + usersLoginUrl}>
+                    <NavDropdown.Item href={usersUrlFinal + usersLoginUrl}>
                       Books
                     </NavDropdown.Item>
                   </NavDropdown>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, HashRouter } from "react-router-dom";
 
 import Header from "./components/Header.components";
 
@@ -25,44 +25,65 @@ import {
 import loginData from "./data/loginData.data";
 import CreateBook from "./pages/books/CreateBook.pages";
 import UpdateBook from "./pages/books/UpdateBook.pages";
+import { basename, hashEnabled } from "./config/other.config";
 
 function App() {
   const [auth, setAuth] = useState(loginData);
 
+  const Router = (props) => {
+    if (hashEnabled) {
+      return (
+        <HashRouter basename={props.basename || ""}>
+          {props.children}
+        </HashRouter>
+      );
+    } else {
+      return (
+        <BrowserRouter basename={props.basename || ""}>
+          {props.children}
+        </BrowserRouter>
+      );
+    }
+  };
+
   return (
     <>
-      <BrowserRouter>
+      <Router basename={basename}>
         <Header auth={auth} setAuth={setAuth} />
         <div className="container">
           <Switch>
             <Route path={homeUrl} exact>
               <Home auth={auth} />
             </Route>
-            <Route path={aboutUrl}>
+            <Route path={aboutUrl} exact>
               <About auth={auth} setAuth={setAuth} />
             </Route>
             <Route path={usersUrl}>
+              {" "}
+              exact
               <Users auth={auth} setAuth={setAuth} />
             </Route>
             <Route path={employesUrl}>
+              {" "}
+              exact
               <Employes auth={auth} setAuth={setAuth} />
             </Route>
-            <Route path={booksUrl}>
+            <Route path={booksUrl} exact>
               <Books auth={auth} setAuth={setAuth} />
             </Route>
-            <Route path={createBookUrl}>
+            <Route path={createBookUrl} exact>
               <CreateBook auth={auth} setAuth={setAuth} />
             </Route>
-            <Route path={updateBookUrl}>
+            <Route path={updateBookUrl} exact>
               <UpdateBook auth={auth} setAuth={setAuth} />
             </Route>
-            <Route path={transactionsUrl}>
+            <Route path={transactionsUrl} exact>
               <Transactions auth={auth} setAuth={setAuth} />
             </Route>
             <Route component={NotFound} />
           </Switch>
         </div>
-      </BrowserRouter>
+      </Router>
     </>
   );
 }
