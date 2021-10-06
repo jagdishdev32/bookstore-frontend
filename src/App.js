@@ -55,29 +55,25 @@ function App() {
             <Route path={homeUrl} exact>
               <Home auth={auth} />
             </Route>
-            <Route path={aboutUrl} exact>
+            <Route path={aboutUrl}>
               <About auth={auth} setAuth={setAuth} />
             </Route>
             <Route path={usersUrl}>
-              {" "}
-              exact
               <Users auth={auth} setAuth={setAuth} />
             </Route>
             <Route path={employesUrl}>
-              {" "}
-              exact
               <Employes auth={auth} setAuth={setAuth} />
             </Route>
-            <Route path={booksUrl} exact>
+            <Route path={booksUrl}>
               <Books auth={auth} setAuth={setAuth} />
             </Route>
-            <Route path={createBookUrl} exact>
+            <Route path={createBookUrl}>
               <CreateBook auth={auth} setAuth={setAuth} />
             </Route>
-            <Route path={updateBookUrl} exact>
+            <Route path={updateBookUrl}>
               <UpdateBook auth={auth} setAuth={setAuth} />
             </Route>
-            <Route path={transactionsUrl} exact>
+            <Route path={transactionsUrl}>
               <Transactions auth={auth} setAuth={setAuth} />
             </Route>
             <Route component={NotFound} />

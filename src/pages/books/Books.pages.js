@@ -99,9 +99,9 @@ const Books = (props) => {
                   <p>book left: {book.quantity - +book.sales}</p>
                   <p>book total quantity: {book.quantity}</p>
 
-                  {props.auth.usersLogin ? (
+                  {props.auth.userLogin && props.auth.EmployesLogin ? (
                     <>
-                      {/* If User Logged In */}
+                      {/* If both loggedIn */}
                       <button
                         className="btn btn-primary"
                         onClick={() =>
@@ -118,15 +118,6 @@ const Books = (props) => {
                       >
                         Purchase
                       </button>
-                    </>
-                  ) : (
-                    <>
-                      {/* If Employes Logged In */}
-                      <p className="text-danger">
-                        Employes Cannot Purchase Book
-                        <br />
-                        Loggin as User to Purchase Book
-                      </p>
                       <LinkButton
                         title="Update"
                         to={{ pathname: updateBookUrl, state: { book: book } }}
@@ -146,6 +137,62 @@ const Books = (props) => {
                           );
                         }}
                       />
+                    </>
+                  ) : (
+                    <>
+                      {/* If Not Both Logged IN */}
+                      {props.auth.usersLogin ? (
+                        <>
+                          {/* If User Logged In */}
+                          <button
+                            className="btn btn-primary"
+                            onClick={() =>
+                              purchaseHandler(book.id, props.auth.usersToken)
+                                .then((response) => {
+                                  getBooks(token)
+                                    .then((books) => {
+                                      setBooks(books);
+                                    })
+                                    .catch((error) => console.log(error));
+                                })
+                                .catch((error) => console.log(error))
+                            }
+                          >
+                            Purchase
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          {/* If Employes Logged In */}
+                          <p className="text-danger">
+                            Employes Cannot Purchase Book
+                            <br />
+                            Loggin as User to Purchase Book
+                          </p>
+                          <LinkButton
+                            title="Update"
+                            to={{
+                              pathname: updateBookUrl,
+                              state: { book: book },
+                            }}
+                          />
+                          <Button
+                            title="Delete Book"
+                            type="button"
+                            onClick={() => {
+                              deleteBookHandler(book.id, token, history).then(
+                                () => {
+                                  getBooks(token)
+                                    .then((books) => {
+                                      setBooks(books);
+                                    })
+                                    .catch((error) => console.log(error));
+                                }
+                              );
+                            }}
+                          />
+                        </>
+                      )}
                     </>
                   )}
                 </Card>

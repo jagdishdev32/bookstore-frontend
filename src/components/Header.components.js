@@ -25,6 +25,7 @@ const Header = (props) => {
     employesUrlFinal = employesUrl,
     usersUrlFinal = usersUrl,
     transactionsUrlFinal = transactionsUrl,
+    createBookUrlFinal = createBookUrl,
     booksUrlFinal = booksUrl;
 
   if (hashEnabled) {
@@ -35,6 +36,7 @@ const Header = (props) => {
     usersUrlFinal = basename + hashUrl + usersUrl;
     transactionsUrlFinal = basename + hashUrl + transactionsUrl;
     booksUrlFinal = basename + hashUrl + booksUrl;
+    createBookUrlFinal = basename + hashUrl + createBookUrl;
   }
 
   return (
@@ -69,7 +71,7 @@ const Header = (props) => {
                     <NavDropdown.Item href={booksUrlFinal}>
                       Books
                     </NavDropdown.Item>
-                    <NavDropdown.Item href={createBookUrl}>
+                    <NavDropdown.Item href={createBookUrlFinal}>
                       Create Book
                     </NavDropdown.Item>
                     <NavDropdown.Item href={transactionsUrlFinal}>
