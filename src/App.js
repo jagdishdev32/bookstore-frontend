@@ -31,7 +31,7 @@ function App() {
 
   return (
     <>
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <BrowserRouter basename={process.env.REACT_APP_FRONTEND_BASE_URL}>
         <Header auth={auth} setAuth={setAuth} />
         <div className="container">
           <Switch>
